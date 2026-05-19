@@ -1,0 +1,63 @@
+<div class="flex items-center justify-center w-full min-h-screen p-4 bg-gray-50">
+  <div class="w-full max-w-5xl bg-white rounded-[2.5rem] border border-[#C5A29C] shadow-sm p-8 md:p-12 md:py-16 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+    
+    <div class="flex flex-col items-center space-y-6 text-center">
+      <div class="flex items-center justify-center w-48 h-64 overflow-hidden bg-gray-100 rounded-sm shadow-sm">
+        <img src="/logo.jpg" alt="EKAR St Louis de Gonzage" class="object-cover w-full h-full">
+      </div>
+      
+      <div class="space-y-1">
+        <h2 class="text-base font-black tracking-wide text-gray-900 uppercase md:text-lg">
+          EKAR St Louis de Gonzage Mandrosoa Ivato
+        </h2>
+        <div class="inline-block max-w-sm px-4 py-2 border border-[#707070] rounded-sm">
+          <p class="text-xs font-semibold leading-relaxed tracking-wider text-gray-700 uppercase md:text-sm">
+            Distrika Imerina Afovoany Diosezy<br>Antananarivo
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-col justify-center w-full max-w-sm mx-auto">
+      <h3 class="mb-8 text-lg font-black tracking-wider uppercase text-gray-950">
+        Connectez-vous
+      </h3>
+      
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="space-y-6">
+        <div class="space-y-1.5">
+            <label for="username" class="block text-sm font-bold tracking-wide text-gray-800">
+            Nom d'utilisateur
+            </label>
+            <input 
+            type="text" 
+            id="username" 
+            formControlName="username"
+            class="w-full p-3 text-base transition-colors border-2 border-[#cfcfcf] rounded shadow-inner outline-none focus:border-gray-500"
+            >
+        </div>
+        
+        <div class="space-y-1.5">
+            <label for="password" class="block text-sm font-bold tracking-wide text-gray-800">
+            Mot de passe
+            </label>
+            <input 
+            type="password" 
+            id="password" 
+            formControlName="password"
+            class="w-full p-3 text-base transition-colors border-2 border-[#cfcfcf] rounded shadow-inner outline-none focus:border-gray-500"
+            >
+        </div>
+        
+        <div class="pt-4">
+            <button 
+                type="submit" 
+                class="w-48 bg-[#4a4644] hover:bg-[#3a3735] text-white font-extrabold uppercase tracking-widest text-sm py-3.5 px-6 shadow transition-all duration-150"
+                >
+                Valider
+            </button>
+        </div>
+        </form>
+    </div>
+
+  </div>
+</div>

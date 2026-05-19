@@ -1,0 +1,43 @@
+<div class="w-full p-6 mx-auto bg-white rounded-lg shadow-lg">
+  <div class="mb-8 text-center">
+    <h1 class="text-xl font-bold uppercase">EKAR St Louis de Gonzage Mandrosoa Ivato</h1>
+    <h2 class="text-lg tracking-widest text-gray-600 uppercase">Fanisana Ankohonana</h2>
+  </div>
+
+  <div class="flex items-center justify-center mb-10">
+    <div class="flex items-center space-x-4">
+      <div [ngClass]="{'bg-black text-white': currentStep >= 1}" class="flex items-center justify-center w-10 h-10 font-bold border-2 rounded-full">1</div>
+      <div class="w-20 h-1 bg-gray-300"></div>
+      <div [ngClass]="{'bg-black text-white': currentStep >= 2}" class="flex items-center justify-center w-10 h-10 font-bold border-2 rounded-full">2</div>
+      <div class="w-20 h-1 bg-gray-300"></div>
+      <div [ngClass]="{'bg-black text-white': currentStep >= 3}" class="flex items-center justify-center w-10 h-10 font-bold border-2 rounded-full">3</div>
+    </div>
+  </div>
+
+  <form [formGroup]="registrationForm">
+    <div *ngIf="currentStep === 1">
+      <app-foyer-step [parentForm]="registrationForm.get('foyer')"></app-foyer-step>
+    </div>
+    
+    <div *ngIf="currentStep === 2">
+      <app-parents-step [parentForm]="registrationForm.get('parents')"></app-parents-step>
+    </div>
+
+    <div *ngIf="currentStep === 3">
+      <app-children-step [formArrayEnfants]="registrationForm.get('enfants')"></app-children-step>
+    </div>
+  </form>
+
+  <div class="flex justify-between mt-10">
+    <button (click)="prevStep()" *ngIf="currentStep > 1" class="px-6 py-2 text-white bg-gray-700 rounded shadow">
+      DINGANA MIALOHA
+    </button>
+    <div class="flex-grow"></div>
+    <button (click)="nextStep()" *ngIf="currentStep < 3" class="px-6 py-2 text-white bg-gray-700 rounded shadow">
+      DINGANA MANARAKA
+    </button>
+    <button (click)="onSubmit()" *ngIf="currentStep === 3" class="px-6 py-2 text-white uppercase bg-gray-700 rounded shadow">
+      Terminer
+    </button>
+  </div>
+</div>
