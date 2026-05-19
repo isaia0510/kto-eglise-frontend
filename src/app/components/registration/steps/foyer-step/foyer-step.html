@@ -1,0 +1,55 @@
+<div [formGroup]="parentForm" class="space-y-8">
+  <section>
+    <h3 class="pb-2 mb-4 font-bold tracking-widest text-center uppercase border-b">Adresse</h3>
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-4">
+      <div>
+        <label class="block text-sm">Lot</label>
+        <input type="text" formControlName="lot" class="w-full p-2 border rounded outline-none focus:ring-2 focus:ring-blue-400">
+      </div>
+      <div>
+        <label class="block text-sm">Toerana</label>
+        <input type="text" formControlName="toerana" class="w-full p-2 border rounded outline-none focus:ring-2 focus:ring-blue-400">
+      </div>
+      <div>
+        <label class="block text-sm">Fokontany</label>
+        <input type="text" formControlName="fokontany" class="w-full p-2 border rounded outline-none focus:ring-2 focus:ring-blue-400">
+      </div>
+      <div>
+        <label class="block text-sm">Commune</label>
+        <input type="text" formControlName="commune" class="w-full p-2 border rounded outline-none focus:ring-2 focus:ring-blue-400">
+      </div>
+    </div>
+    <div class="w-1/4 mt-4">
+      <label class="block text-sm">APV</label>
+      <input type="text" formControlName="apv" class="w-full p-2 border rounded outline-none focus:ring-2 focus:ring-blue-400">
+    </div>
+  </section>
+
+  <section>
+    <h3 class="pb-2 mb-4 font-bold tracking-widest text-center uppercase border-b">Taranaka</h3>
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+      <div>
+        <label class="block text-sm">Itompokolahy</label>
+        <input type="text" formControlName="itompokolahy" class="w-full p-2 border rounded">
+      </div>
+      <div>
+        <label class="block text-sm">Itompokovavy</label>
+        <input type="text" formControlName="itompokovavy" class="w-full p-2 border rounded">
+      </div>
+      <div>
+        <label class="block text-sm">Atoa/Ramatoa</label>
+        <input type="text" formControlName="atoaRamatoa" class="w-full p-2 border rounded">
+      </div>
+    </div>
+    <div class="grid grid-cols-1 gap-4 mt-4 md:grid-cols-2">
+      <div>
+        <label class="block text-sm">Anarana fenon'ny Solotena</label>
+        <input type="text" formControlName="solotena" class="w-full p-2 border rounded">
+      </div>
+      <div>
+        <label class="block text-sm">Nomerao finday hifandraisana</label>
+        <input type="text" formControlName="telephone" class="w-full p-2 border rounded">
+      </div>
+    </div>
+  </section>
+</div>
