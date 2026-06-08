@@ -16,15 +16,15 @@
 
   <form [formGroup]="registrationForm">
     <div *ngIf="currentStep === 1">
-      <app-foyer-step [parentForm]="registrationForm.get('foyer')"></app-foyer-step>
+      <app-foyer-step [parentForm]="$any(registrationForm.get('foyer'))"></app-foyer-step>
     </div>
     
     <div *ngIf="currentStep === 2">
-      <app-parents-step [parentForm]="registrationForm.get('parents')"></app-parents-step>
+      <app-parents-step [parentForm]="$any(registrationForm.get('parents'))"></app-parents-step>
     </div>
 
     <div *ngIf="currentStep === 3">
-      <app-children-step [formArrayEnfants]="registrationForm.get('enfants')"></app-children-step>
+      <app-children-step [formArrayEnfants]="$any(registrationForm.get('enfants'))"></app-children-step>
     </div>
   </form>
 

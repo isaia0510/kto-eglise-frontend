@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-registration',
+  standalone: true,
   imports: [CommonModule, ReactiveFormsModule, FoyerStep, ParentsStep, ChildrenStep],
   templateUrl: './registration.html',
 })
@@ -23,9 +24,20 @@ export class Registration implements OnInit{
         solotena: [''], telephone: ['']
       }),
       parents: this.fb.group({
-        ray: this.fb.group({ anarana: [''], fanampiny: [''], datyNahaterahany: [''], asa: [''], rayFeno: [''], renyFeno: [''], tel: [''], email: [''], sakrameta: [[]] }),
-        reny: this.fb.group({ anarana: [''], fanampiny: [''], datyNahaterahany: [''], asa: [''], rayFeno: [''], renyFeno: [''], tel: [''], email: [''], sakrameta: [[]] }),
-        fombaFanambadiana: ['']
+        ray: this.fb.group({ anarana: [''], fanampiny: [''], datyNahaterahany: [''], asa: [''], rayFeno: [''], renyFeno: [''], tel: [''], email: [''], sakrameta: [[]], fikambanana: [''], vaomiera: [''] }),
+        reny: this.fb.group({ anarana: [''], fanampiny: [''], datyNahaterahany: [''], asa: [''], rayFeno: [''], renyFeno: [''], tel: [''], email: [''], sakrameta: [[]], fikambanana: [''], vaomiera: [''] }),
+        mariage: this.fb.group({
+          vitaSoratra: [false],
+          dateCivil: [null],
+
+          vitaMariazy: [false],
+          dateReligieux: [null],
+
+          mariazyKatolika: [false],
+          churchName: [''],
+
+          maritalStatus: [null]
+        })
       }),
       enfants: this.fb.array([])
     });

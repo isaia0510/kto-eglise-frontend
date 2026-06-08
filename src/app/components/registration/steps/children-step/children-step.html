@@ -1,43 +1,48 @@
 <div class="space-y-6">
-  <div class="relative p-6 border border-pink-200 shadow-sm bg-pink-50/10 rounded-3xl">
+  <div [formGroup]="enfantForm" class="relative p-6 border border-[#C5A29C] shadow-sm bg-pink-50/10 rounded-3xl">
     <h3 class="mb-6 font-bold tracking-wide text-gray-800 uppercase">Mikasika ny zanaka</h3>
     
     <div class="grid items-start grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
       <div>
         <label class="block mb-1 text-xs font-medium text-gray-600">Anarana</label>
-        <input type="text" class="w-full p-2 border border-gray-300 rounded outline-none focus:ring-1 focus:ring-blue-400">
+        <input type="text" formControlName="anarana" class="w-full p-2 border border-gray-300 rounded outline-none focus:ring-1 focus:ring-blue-400">
       </div>
       
       <div>
         <label class="block mb-1 text-xs font-medium text-gray-600">Fanampiny</label>
-        <input type="text" class="w-full p-2 border border-gray-300 rounded outline-none focus:ring-1 focus:ring-blue-400">
+        <input type="text" formControlName="fanampiny" class="w-full p-2 border border-gray-300 rounded outline-none focus:ring-1 focus:ring-blue-400">
       </div>
       
       <div>
         <label class="block mb-1 text-xs font-medium text-gray-600">Sexe</label>
         <div class="flex gap-4 py-2">
-          <label class="flex items-center gap-1 text-xs text-gray-700 cursor-pointer">
-            <input type="radio" name="sexe" class="w-4 h-4 text-blue-600"> Lahy
-          </label>
-          <label class="flex items-center gap-1 text-xs text-gray-700 cursor-pointer">
-            <input type="radio" name="sexe" class="w-4 h-4 text-pink-600"> Vavy
-          </label>
+
+          @for(genre of listeGenre; track genre.idGenre) {
+            <label class="flex items-center gap-1 text-ts text-gray-700 cursor-pointer">
+              <input
+                type="radio"
+                class="w-4 h-4"
+                formControlName="genre"
+                [value]="genre.idGenre"> {{ genre.nom }}
+            </label>
+          }
+
         </div>
       </div>
       
       <div>
         <label class="block mb-1 text-xs font-medium text-gray-600">Daty nahaterahany</label>
-        <input type="date" class="w-full p-2 text-xs border border-gray-300 rounded outline-none focus:ring-1 focus:ring-blue-400">
+        <input type="date" formControlName="datyNahaterahany" class="w-full p-2 text-xs border border-gray-300 rounded outline-none focus:ring-1 focus:ring-blue-400">
       </div>
 
       <div>
         <label class="block mb-1 text-xs font-medium text-gray-600">Telephone</label>
-        <input type="text" class="w-full p-2 border border-gray-300 rounded outline-none focus:ring-1 focus:ring-blue-400">
+        <input type="text" formControlName="telephone" class="w-full p-2 border border-gray-300 rounded outline-none focus:ring-1 focus:ring-blue-400">
       </div>
 
       <div>
         <label class="block mb-1 text-xs font-medium text-gray-600">Email/facebook</label>
-        <input type="text" class="w-full p-2 border border-gray-300 rounded outline-none focus:ring-1 focus:ring-blue-400">
+        <input type="text" formControlName="email" class="w-full p-2 border border-gray-300 rounded outline-none focus:ring-1 focus:ring-blue-400">
       </div>
     </div>
 
@@ -46,38 +51,53 @@
       <div class="lg:col-span-5">
         <label class="block mb-2 text-xs font-medium text-gray-600">Sakrameta</label>
         <div class="flex flex-wrap text-xs text-gray-700 gap-x-4 gap-y-2">
-          <label class="flex items-center gap-1"><input type="checkbox" class="rounded"> Batemy</label>
-          <label class="flex items-center gap-1"><input type="checkbox" class="rounded"> Konfesy I</label>
-          <label class="flex items-center gap-1"><input type="checkbox" class="rounded"> Kominio I</label>
-          <label class="flex items-center gap-1"><input type="checkbox" class="rounded"> Fankaherezana</label>
-          <label class="flex items-center gap-1"><input type="checkbox" class="rounded"> Mariazy</label>
+          @for(sakrameta of listeSakrameta; track sakrameta.idSakrameta) {
+            <label class="flex items-center gap-1">
+
+              <input
+                type="checkbox"
+                [checked]="sakrametaArray.value.includes(sakrameta.idSakrameta)"
+                (change)="toggleSakrameta(sakrameta.idSakrameta)">
+
+              {{ sakrameta.nom }}
+
+            </label>
+          }
         </div>
       </div>
 
       <div class="lg:col-span-2">
         <label class="block mb-1 text-xs font-medium text-gray-600">Fikambanana Masina</label>
-        <select class="w-full p-2 text-xs bg-white border border-gray-300 rounded outline-none focus:ring-1 focus:ring-blue-400">
+        <select formControlName="fikambanana" class="w-full p-2 text-xs bg-white border border-gray-300 rounded outline-none focus:ring-1 focus:ring-blue-400">
           <option value=""></option>
-          <option value="AFAFI">AFAFI</option>
-          </select>
+          @for(fik of listeFikambanana; track fik.idFikambanana) {
+            <option [value]="fik.idFikambanana">
+              {{ fik.nom }}
+            </option>
+          }
+        </select>
       </div>
 
       <div class="lg:col-span-2">
         <label class="block mb-1 text-xs font-medium text-gray-600">Vaomieran'asa</label>
-        <select class="w-full p-2 text-xs bg-white border border-gray-300 rounded outline-none focus:ring-1 focus:ring-blue-400">
+        <select formControlName="vaomiera" class="w-full p-2 text-xs bg-white border border-gray-300 rounded outline-none focus:ring-1 focus:ring-blue-400">
           <option value=""></option>
-          <option value="SEFADA">SEFADA</option>
+           @for(vao of listeVaomiera; track vao.idVaomiera) {
+            <option [value]="vao.idVaomiera">
+              {{ vao.nom }}
+            </option>
+          }
           </select>
       </div>
 
       <div class="pb-2 lg:col-span-2">
         <label class="flex items-center gap-2 text-xs font-medium text-gray-700 cursor-pointer">
-          <input type="checkbox" class="w-4 h-4 text-red-600 rounded"> Efa maty
+          <input type="checkbox" formControlName="estMort" class="w-4 h-4 text-red-600 rounded"> Efa maty
         </label>
       </div>
       
       <div class="flex justify-end lg:col-span-1">
-        <button type="button" class="w-full px-6 py-2 text-sm font-bold tracking-wider text-white uppercase transition shadow-sm sm:w-auto bg-rose-300 rounded-xl hover:bg-rose-400">
+        <button (click)="ajouterEnfant()" type="button" class="w-full px-6 py-2 text-sm font-bold tracking-wider text-white uppercase transition shadow-sm sm:w-auto bg-[#C5A29C] rounded-xl hover:bg-rose-400">
           OK
         </button>
       </div>
@@ -102,27 +122,34 @@
           </tr>
         </thead>
         <tbody class="divide-y divide-gray-100">
-          <tr class="text-sm text-gray-700 transition hover:bg-gray-50/80">
-            <td class="px-4 py-4 font-medium text-gray-900">NIRINA</td>
-            <td class="px-4 py-4">Isaia Joëlle</td>
-            <td class="px-4 py-4">Vavy</td>
-            <td class="px-4 py-4">2026-05-08</td>
-            <td class="px-4 py-4">
-              <span class="px-2 py-1 text-xs text-gray-600 bg-gray-100 rounded-full">Batemy, Konfesy</span>
-            </td>
-            <td class="px-4 py-4">AFAFI</td>
-            <td class="px-4 py-4">SEFADA</td>
-            <td class="px-4 py-4">
-              <div class="flex items-center justify-center gap-4">
-                <button type="button" class="transition text-emerald-600 hover:text-emerald-700" title="Modifier">
-                  <span class="text-xl material-icons">edit</span>
+          @for(enfant of formArrayEnfants.controls; track $index) {
+            <tr>
+              <td>{{ enfant.value.anarana }}</td>
+              <td>{{ enfant.value.fanampiny }}</td>
+              <td>{{ enfant.value.genre }}</td>
+              <td>{{ enfant.value.datyNahaterahany }}</td>
+              <td>
+                {{ enfant.value.sakrameta?.length }}
+                sakrameta
+              </td>
+              <td>
+                {{ enfant.value.fikambanana }}
+              </td>
+              <td>
+                {{ enfant.value.vaomiera }}
+              </td>
+              <td class="px-4 py-3 text-center">
+                <button
+                  mat-icon-button 
+                  color="warn" 
+                  (click)="supprimerEnfant($index)"
+                  type="button"
+                  title="Hamafa ity zanaka ity">
+                  <mat-icon>delete</mat-icon>
                 </button>
-                <button type="button" class="text-red-500 transition hover:text-red-600" title="Supprimer">
-                  <span class="text-xl material-icons">delete</span>
-                </button>
-              </div>
-            </td>
-          </tr>
+              </td>
+            </tr>
+            }  
         </tbody>
       </table>
     </div>

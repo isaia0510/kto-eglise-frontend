@@ -34,17 +34,17 @@
       
       <div class="col-span-12">
         <label class="block mb-1 text-xs font-medium text-gray-600">Ray: Anarana feno</label>
-        <input type="text" formControlName="rayAnaranaFeno" class="w-full p-2 border border-gray-300 rounded outline-none focus:ring-1 focus:ring-blue-400">
+        <input type="text" formControlName="rayFeno" class="w-full p-2 border border-gray-300 rounded outline-none focus:ring-1 focus:ring-blue-400">
       </div>
       
       <div class="col-span-12">
         <label class="block mb-1 text-xs font-medium text-gray-600">Reny: Anarana feno</label>
-        <input type="text" formControlName="renyAnaranaFeno" class="w-full p-2 border border-gray-300 rounded outline-none focus:ring-1 focus:ring-blue-400">
+        <input type="text" formControlName="renyFeno" class="w-full p-2 border border-gray-300 rounded outline-none focus:ring-1 focus:ring-blue-400">
       </div>
       
       <div class="col-span-6">
         <label class="block mb-1 text-xs font-medium text-gray-600">Téléphone</label>
-        <input type="text" formControlName="telephone" class="w-full p-2 border border-gray-300 rounded outline-none focus:ring-1 focus:ring-blue-400">
+        <input type="text" formControlName="tel" class="w-full p-2 border border-gray-300 rounded outline-none focus:ring-1 focus:ring-blue-400">
       </div>
       
       <div class="col-span-6">
@@ -57,10 +57,17 @@
       <div class="col-span-4">
         <p class="mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase">Sakrameta</p>
         <div class="flex flex-col gap-1 text-xs text-gray-600">
-          <label class="flex items-center gap-1"><input type="checkbox" formControlName="batemy" class="rounded"> Batemy</label>
-          <label class="flex items-center gap-1"><input type="checkbox" formControlName="konfesy" class="rounded"> Konfesy I</label>
-          <label class="flex items-center gap-1"><input type="checkbox" formControlName="kominio" class="rounded"> Kominio I</label>
-          <label class="flex items-center gap-1"><input type="checkbox" formControlName="fankaherezana" class="rounded"> Fankaherezana</label>
+          @for (sakrameta of listeSakrameta; track sakrameta.idSakrameta) {
+            <label class="flex items-center gap-1">
+              <input 
+                type="checkbox" 
+                [checked]="isSakrametaChecked(sakrameta.idSakrameta, 'ray')"
+                (change)="onCheckboxChange($event, sakrameta.idSakrameta, 'ray')"
+                class="rounded"
+              > 
+              {{ sakrameta.nom }}
+            </label>
+          }
         </div>
       </div>
 
@@ -68,7 +75,9 @@
         <p class="mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase">Fikambanana</p>
         <select formControlName="fikambanana" class="w-full p-2 text-xs bg-white border border-gray-300 rounded outline-none focus:ring-1 focus:ring-blue-400">
           <option value=""></option>
-          <option value="AFAFI">AFAFI</option>
+          @for (fikambanana of listeFikambanana; track fikambanana.idFikambanana) {
+            <option [value]="fikambanana.idFikambanana">{{ fikambanana.nom }}</option>
+          }
         </select>
       </div>
 
@@ -76,12 +85,16 @@
         <p class="mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase">Vaomiera</p>
         <select formControlName="vaomiera" class="w-full p-2 text-xs bg-white border border-gray-300 rounded outline-none focus:ring-1 focus:ring-blue-400">
           <option value=""></option>
-          <option value="SEFADA">SEFADA</option>
+          @for (vaomiera of listeVaomiera; track vaomiera.idVaomiera) {
+             <option [value]="vaomiera.idVaomiera">{{ vaomiera.nom }}</option>
+            <option [value]="vaomiera.idVaomiera">{{ vaomiera.nom }}</option>
+          }
         </select>
       </div>
     </div>
   </div>
 
+  
   <div formGroupName="reny" class="flex-1 p-6 border border-[#C5A29C] shadow-sm bg-blue-50/10 rounded-3xl">
     <div class="flex items-center gap-4 pb-4 mb-6 border-b">
       <div class="flex items-center justify-center w-16 h-16 bg-white border-2 border-gray-700 rounded-full shrink-0">
@@ -112,15 +125,15 @@
       </div>
       <div class="col-span-12">
         <label class="block mb-1 text-xs font-medium text-gray-600">Ray: Anarana feno</label>
-        <input type="text" formControlName="rayAnaranaFeno" class="w-full p-2 border border-gray-300 rounded outline-none focus:ring-1 focus:ring-blue-400">
+        <input type="text" formControlName="rayFeno" class="w-full p-2 border border-gray-300 rounded outline-none focus:ring-1 focus:ring-blue-400">
       </div>
       <div class="col-span-12">
         <label class="block mb-1 text-xs font-medium text-gray-600">Reny: Anarana feno</label>
-        <input type="text" formControlName="renyAnaranaFeno" class="w-full p-2 border border-gray-300 rounded outline-none focus:ring-1 focus:ring-blue-400">
+        <input type="text" formControlName="renyFeno" class="w-full p-2 border border-gray-300 rounded outline-none focus:ring-1 focus:ring-blue-400">
       </div>
       <div class="col-span-6">
         <label class="block mb-1 text-xs font-medium text-gray-600">Téléphone</label>
-        <input type="text" formControlName="telephone" class="w-full p-2 border border-gray-300 rounded outline-none focus:ring-1 focus:ring-blue-400">
+        <input type="text" formControlName="tel" class="w-full p-2 border border-gray-300 rounded outline-none focus:ring-1 focus:ring-blue-400">
       </div>
       <div class="col-span-6">
         <label class="block mb-1 text-xs font-medium text-gray-600">Email</label>
@@ -132,49 +145,112 @@
       <div class="col-span-4">
         <p class="mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase">Sakrameta</p>
         <div class="flex flex-col gap-1 text-xs text-gray-600">
-          <label class="flex items-center gap-1"><input type="checkbox" formControlName="batemy" class="rounded"> Batemy</label>
-          <label class="flex items-center gap-1"><input type="checkbox" formControlName="konfesy" class="rounded"> Konfesy I</label>
-          <label class="flex items-center gap-1"><input type="checkbox" formControlName="kominio" class="rounded"> Kominio I</label>
-          <label class="flex items-center gap-1"><input type="checkbox" formControlName="fankaherezana" class="rounded"> Fankaherezana</label>
+          @for (sakrameta of listeSakrameta; track sakrameta.idSakrameta) {
+            <label class="flex items-center gap-1">
+              <input
+                type="checkbox"
+                [checked]="isSakrametaChecked(sakrameta.idSakrameta, 'reny')"
+                (change)="onCheckboxChange($event, sakrameta.idSakrameta, 'reny')"
+              >
+              {{ sakrameta.nom }}
+            </label>
+          }
         </div>
       </div>
       <div class="self-start col-span-4">
         <p class="mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase">Fikambanana</p>
         <select formControlName="fikambanana" class="w-full p-2 text-xs bg-white border border-gray-300 rounded outline-none focus:ring-1 focus:ring-blue-400">
           <option value=""></option>
-          <option value="AFAFI">AFAFI</option>
+          @for (fikambanana of listeFikambanana; track fikambanana.idFikambanana) {
+            <option [value]="fikambanana.idFikambanana">
+              {{ fikambanana.nom }}
+            </option>
+          }
         </select>
       </div>
       <div class="self-start col-span-4">
         <p class="mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase">Vaomiera</p>
         <select formControlName="vaomiera" class="w-full p-2 text-xs bg-white border border-gray-300 rounded outline-none focus:ring-1 focus:ring-blue-400">
           <option value=""></option>
-          <option value="SEFADA">SEFADA</option>
+          @for (vaomiera of listeVaomiera; track vaomiera.idVaomiera) {
+            <option [value]="vaomiera.idVaomiera">
+              {{ vaomiera.nom }}
+            </option>
+          }
         </select>
       </div>
     </div>
   </div>
 
-  <div class="self-start w-full p-6 border border-gray-200 lg:w-64 bg-gray-50 rounded-3xl shrink-0">
-    <p class="pb-2 mb-4 text-sm font-bold tracking-wide text-gray-800 uppercase border-b">Fomba Fanambadiana</p>
-    <div class="flex flex-col gap-3 text-sm text-gray-700">
-      <label class="flex items-center gap-3 py-1 border-b border-gray-200 border-dashed cursor-pointer last:border-0">
-        <input type="checkbox" formControlName="vitaSoratra" class="w-4 h-4 text-blue-600 rounded"> 
-        <span>Vita soratra</span>
-      </label>
-      <label class="flex items-center gap-3 py-1 border-b border-gray-200 border-dashed cursor-pointer last:border-0">
-        <input type="checkbox" formControlName="vitaMariazy" class="w-4 h-4 text-blue-600 rounded"> 
-        <span>Vita mariazy</span>
-      </label>
-      <label class="flex items-center gap-3 py-1 border-b border-gray-200 border-dashed cursor-pointer last:border-0">
-        <input type="checkbox" formControlName="divorce" class="w-4 h-4 text-blue-600 rounded"> 
-        <span>Divorcé</span>
-      </label>
-      <label class="flex items-center gap-3 py-1 cursor-pointer last:border-0">
-        <input type="checkbox" formControlName="mananonTena" class="w-4 h-4 text-blue-600 rounded"> 
-        <span>Mananon-tena</span>
-      </label>
-    </div>
-  </div>
+  <div
+    [formGroup]="mariageForm"
+    class="self-start w-full p-6 border border-gray-200 lg:w-64 bg-gray-50 rounded-3xl shrink-0">
 
+    <p class="pb-2 mb-4 text-sm font-bold tracking-wide text-gray-800 uppercase border-b">
+      Fomba Fanambadiana
+    </p>
+
+    <!-- Mariage civil -->
+
+    <label class="flex items-center gap-2 mb-2">
+      <input type="checkbox" formControlName="vitaSoratra">
+      Vita soratra
+    </label>
+
+    @if (mariageForm.get('vitaSoratra')?.value) {
+      <input
+        type="date"
+        formControlName="dateCivil"
+        class="w-full p-2 mb-3 border rounded">
+    }
+
+    <!-- Mariage religieux -->
+
+    <label class="flex items-center gap-2 mb-2">
+      <input type="checkbox" formControlName="vitaMariazy">
+      Vita mariazy
+    </label>
+
+    @if (mariageForm.get('vitaMariazy')?.value) {
+      <input
+        type="date"
+        formControlName="dateReligieux"
+        class="w-full p-2 mb-3 border rounded">
+    }
+
+    <!-- Mariage catholique -->
+
+    <label class="flex items-center gap-2 mb-2">
+      <input type="checkbox" formControlName="mariazyKatolika">
+      Mariazy hafa fonona
+    </label>
+
+    @if (mariageForm.get('mariazyKatolika')?.value) {
+      <input
+        type="text"
+        formControlName="churchName"
+        placeholder="Anaran'ny Fiangonana"
+        class="w-full p-2 mb-3 border rounded">
+    }
+
+    <!-- Statut matrimonial -->
+
+    <div class="mt-4">
+      <p class="mb-2 text-xs font-bold uppercase">
+        Toe-panambadiana
+      </p>
+
+      @for(status of listeMaritalStatus; track status.idMarital) {
+        <label class="flex items-center gap-2 mb-1">
+          <input
+            type="radio"
+            name="maritalStatus"
+            formControlName="maritalStatus"
+            [value]="status.idMarital">
+          {{ status.nom }}
+        </label>
+      }
+    </div>
+
+  </div>
 </div>
